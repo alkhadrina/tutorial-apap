@@ -20,7 +20,8 @@ http://localhost:8080/kebun-safari/?id=1
 
 5.  Pertanyaan 5: Tambahkan 1 contoh Kebun Safari lainnya sesukamu. Lalu cobalah untuk mengakses http://localhost:8080/ , apa yang akan ditampilkan? Sertakan juga bukti screenshotmu.
 Daftar semua kebun safari yang sudah dibuat.
-![Screenshot](https://ibb.co/SXn3dDL)
+[SS hasil](https://ibb.co/SXn3dDL)
+
 
 ---
 ## Tutorial 1
