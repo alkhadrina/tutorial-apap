@@ -3,6 +3,25 @@
 * **Alkhadrina Rasyidah Azzah Zahra** - *1906399764* - *A*
 
 ---
+## Tutorial 2
+### What I have learned today
+
+1.  Pertanyaan 1: Cobalah untuk menambahkan sebuah Kebun dengan mengakses link berikut setelah menjalankan program: http://localhost:8080/kebun-safari/add?id=1&nama=Papa%20APAP&alamat=Maung% 20Fasilkom&noTelepon=081xxx Apa yang terjadi? Jelaskan mengapa hal tersebut dapat terjadi
+Error, karena belum ada templatenya sehingga Ketika return tidak ada filenya
+
+2.  Pertanyaan 2: Menurut kamu anotasi @Autowired pada class Controller tersebut merupakan implementasi dari konsep apa? Dan jelaskan secara singkat cara kerja @Autowired tersebut dalam konteks service dan controller yang telah kamu buat
+Konsep dependency injection, jadi kita akan melakukan inisialisasi terhadap class tersebut, dan lalu mengisi (inject) semua kebutuhannya (dependency). Untuk injection ini, kita juga tidak perlu lagi menyediakan setter method maupun menambahkan argumen di constructor. Semua field/property yang memiliki anotasi @Autowired akan diisikan oleh Spring dengan object bertipe-data sesuai.
+
+3.  Pertanyaan 3: Cobalah untuk menambahkan sebuah Kebun dengan mengakses link berikut: http://localhost:8080/kebun-safari/add?id=1&nama=Papa%20APAP&alamat=Maung% 20Fasilkom Apa yang terjadi? Jelaskan mengapa hal tersebut dapat terjadi.
+Error, karena kurang parameter noTelepon yang statusnya required untuk membuat object ini.
+
+4.  Pertanyaan 4: Jika Papa APAP ingin melihat Kebun Safari dengan nama Papa APAP, link apa yang harus diakses?
+http://localhost:8080/kebun-safari/?id=1
+
+5.  Pertanyaan 5: Tambahkan 1 contoh Kebun Safari lainnya sesukamu. Lalu cobalah untuk mengakses http://localhost:8080/ , apa yang akan ditampilkan? Sertakan juga bukti screenshotmu.
+Daftar semua kebun safari yang sudah dibuat.
+
+---
 ## Tutorial 1
 ### What I have learned today
 (Masukkan pertanyaan yang diikuti jawaban di setiap nomor, contoh seperti dibawah. Anda
