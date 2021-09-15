@@ -17,8 +17,12 @@ import apap.tutorial.kebunsafari.service.KebunSafariService;
 public class KebunSafariController {
     private String getKebunSafariPage(String idKebunSafari, Model model){
 
-        if(idKebunSafari.isEmpty() || kebunSafariService.getKebunSafariByIdKebunSafari(idKebunSafari) == null){
+        if(kebunSafariService.getKebunSafariByIdKebunSafari(idKebunSafari) == null){
             model.addAttribute("msg", "ID "+idKebunSafari+" tidak ditemukan");
+        }
+        else if(idKebunSafari == "" ){
+            model.addAttribute("msg", "ID "+idKebunSafari+" tidak ditemukan");
+            
         }
         else{
             final KebunSafariModel kebunSafari = kebunSafariService.getKebunSafariByIdKebunSafari(idKebunSafari);
@@ -74,13 +78,19 @@ public class KebunSafariController {
         return getKebunSafariPage(idKebunSafari, model);
     }
 
+    @GetMapping(value = "/kebun-safari/view")
+    public String kebunSafariNoInputWithPathVariable(Model model){
+        model.addAttribute("msg", "Masukan ID");     
+        return "detail-kebun-safari";
+    }
+
     @GetMapping(value = "/kebun-safari/update/{idKebunSafari}")
     public String kebunSafariUpdateWithPathVariable(
         @PathVariable(value = "idKebunSafari") String idKebunSafari, @RequestParam (value = "noTelepon", required = true) String noTelepon, Model model){
         
         KebunSafariModel kebunSafari = kebunSafariService.getKebunSafariByIdKebunSafari(idKebunSafari);
         if(idKebunSafari.isEmpty() || kebunSafariService.getKebunSafariByIdKebunSafari(idKebunSafari) == null){
-            model.addAttribute("msg", "ID tidak ditemukan");
+            model.addAttribute("msg", "ID "+idKebunSafari+" tidak ditemukan");
             return "update-kebun-safari";
         }
 
@@ -90,16 +100,29 @@ public class KebunSafariController {
         return "update-kebun-safari";
     }
 
+    @GetMapping(value = "/kebun-safari/update")
+    public String kebunSafariUpdateNoInputWithPathVariable(Model model){
+        
+        model.addAttribute("msg", "Masukan ID");
+        return "update-kebun-safari";
+    }
+
     @GetMapping(value = "/kebun-safari/delete/{idKebunSafari}")
     public String kebunSafariDeleteWithPathVariable(
         @PathVariable(value = "idKebunSafari") String idKebunSafari, Model model){
         if(idKebunSafari.isEmpty() || kebunSafariService.getKebunSafariByIdKebunSafari(idKebunSafari) == null){
-            model.addAttribute("msg", "ID tidak ditemukan");
+            model.addAttribute("msg", "ID "+idKebunSafari+" tidak ditemukan");
             return "delete-kebun-safari";
         }
         KebunSafariModel kebunSafari = kebunSafariService.getKebunSafariByIdKebunSafari(idKebunSafari);
         kebunSafariService.getKebunSafariList().remove(kebunSafari);
         model.addAttribute("kebunSafari", kebunSafari);
+        return "delete-kebun-safari";
+    }
+
+    @GetMapping(value = "/kebun-safari/delete")
+    public String kebunSafariDeleteNoInputWithPathVariable(Model model){
+        model.addAttribute("msg", "Masukan ID");
         return "delete-kebun-safari";
     }
     
