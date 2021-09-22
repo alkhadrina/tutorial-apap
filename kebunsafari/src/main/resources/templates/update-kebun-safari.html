@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <title>Update Kebun Safari</title>
+</head>
+<body>
+    <div class="container">
+        <div th:if = "${kebunSafari != null}">
+            <h2>Detail Kebun Safari Berhasil Diubah</h2>
+                <p th:text="'ID Kebun Safari : ' + ${kebunSafari.idKebunSafari} "></p>
+                <p th:text="'Nama Kebun Safari : ' + ${kebunSafari.namaKebunSafari} "></p>
+                <p th:text="'Alamat : ' + ${kebunSafari.alamat} "></p>
+                <p th:text="'Nomor Telepon : ' + ${kebunSafari.noTelepon} "></p>
+        </div>
+        <div th:unless="${kebunSafari != null}">
+            <h3 th:text = "${msg}"></h3>
+        </div>
+    </div>
+    <a href="/">Kembali</a>
+</body>
+
+</html>

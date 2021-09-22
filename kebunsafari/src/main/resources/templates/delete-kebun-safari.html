@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <title>Delete Kebun Safari</title>
+</head>
+<body>
+    <div class="container">
+        <div th:if = "${kebunSafari != null}">
+            <h2>Detail Kebun Safari Berhasil Dihapus</h2>
+        </div>
+        <div th:unless="${kebunSafari != null}">
+            <h3 th:text = "${msg}"></h3>
+        </div>
+    </div>
+    
+        
+    <a href="/">Kembali</a>
+</body>
+
+</html>
