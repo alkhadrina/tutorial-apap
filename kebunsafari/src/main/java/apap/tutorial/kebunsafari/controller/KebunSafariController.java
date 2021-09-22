@@ -93,8 +93,7 @@ public class KebunSafariController {
             model.addAttribute("msg", "ID "+idKebunSafari+" tidak ditemukan");
             return "update-kebun-safari";
         }
-
-        kebunSafari.setNoTelepon(noTelepon);
+        kebunSafari = kebunSafariService.updateKebunSafariByIdKebunSafari(idKebunSafari, noTelepon);
         model.addAttribute("kebunSafari", kebunSafari);
         
         return "update-kebun-safari";
@@ -115,7 +114,7 @@ public class KebunSafariController {
             return "delete-kebun-safari";
         }
         KebunSafariModel kebunSafari = kebunSafariService.getKebunSafariByIdKebunSafari(idKebunSafari);
-        kebunSafariService.getKebunSafariList().remove(kebunSafari);
+        kebunSafariService.deleteKebunSafariByIdKebunSafari(idKebunSafari);
         model.addAttribute("kebunSafari", kebunSafari);
         return "delete-kebun-safari";
     }
@@ -125,5 +124,14 @@ public class KebunSafariController {
         model.addAttribute("msg", "Masukan ID");
         return "delete-kebun-safari";
     }
+
+    @GetMapping(value = "/kebun-safari/deleteall")
+    public String kebunSafariDeleteAllNoInputWithPathVariable(Model model){
+        kebunSafariService.deleteAllSafari();
+        model.addAttribute("msg", "Semua data dihapus");
+        return "delete-kebun-safari";
+    }
+
+
     
 }

@@ -10,4 +10,7 @@ public interface KebunSafariService {
     List<KebunSafariModel> getKebunSafariList();
 
     KebunSafariModel getKebunSafariByIdKebunSafari(String idKebunSafari);
+    KebunSafariModel updateKebunSafariByIdKebunSafari(String idKebunSafari, String noTelepon);
+    void deleteKebunSafariByIdKebunSafari(String idKebunSafari);
+    void deleteAllSafari();
 }
