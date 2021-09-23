@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -48,13 +50,15 @@ public class CabangServiceImpl implements CabangService{
     }
 
     @Override
-    public boolean deleteCabang(CabangModel cabang){
-        if(cabang.getListPegawai().isEmpty()){
-            cabangDb.delete(cabang);
-            return true;
+    public CabangModel deleteCabang(CabangModel cabang){
+        LocalTime now = LocalTime.now();
+        if(now.isBefore(cabang.getWaktuBuka()) || now.isAfter(cabang.getWaktuTutup())){
+            if(cabang.getListPegawai().isEmpty()){
+                cabangDb.delete(cabang);
+                return null;
+            }
         }
-        
 
-        return false;
+        return cabang;
     }
 }

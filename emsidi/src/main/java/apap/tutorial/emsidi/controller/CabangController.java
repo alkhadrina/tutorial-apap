@@ -90,13 +90,13 @@ public class CabangController {
         CabangModel cabang = cabangService.getCabangByNoCabang(noCabang);
         
         model.addAttribute("noCabang", cabang.getNoCabang());
-        boolean del = cabangService.deleteCabang(cabang);
+        cabang = cabangService.deleteCabang(cabang);
 
-        if(!del){
-            model.addAttribute("noCabang", null);
+        if(cabang != null){
+            model.addAttribute("noCabang", cabang);
             return "delete-cabang";
         }
-        
+        model.addAttribute("noCabang", cabang);
         return "delete-cabang";
     }
 }

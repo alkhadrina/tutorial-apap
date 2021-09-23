@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,8 +24,13 @@ public class PegawaiServiceImpl implements PegawaiService{
     }
 
     @Override
-    public void updatePegawai(PegawaiModel pegawai){
-        pegawaiDb.save(pegawai);
+    public PegawaiModel updatePegawai(PegawaiModel pegawai){
+        LocalTime now = LocalTime.now();
+        if(now.isBefore(pegawai.getCabang().getWaktuBuka()) || now.isAfter(pegawai.getCabang().getWaktuTutup())){
+            pegawaiDb.save(pegawai);
+            return pegawai;
+        }
+        return null;
     }
 
     @Override
@@ -36,7 +43,13 @@ public class PegawaiServiceImpl implements PegawaiService{
     }
 
     @Override
-    public void deletePegawai(PegawaiModel pegawai){
-        pegawaiDb.delete(pegawai);
+    public PegawaiModel deletePegawai(PegawaiModel pegawai){
+        LocalTime now = LocalTime.now();
+        if(now.isBefore(pegawai.getCabang().getWaktuBuka()) || now.isAfter(pegawai.getCabang().getWaktuTutup())){
+            pegawaiDb.delete(pegawai);
+            return null;
+        }
+
+        return pegawai;
     }
 }

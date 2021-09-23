@@ -10,7 +10,12 @@
     <div class="card m-4 p-4">
         <div class="card-body">
             <div class="justify-content-center">
-                <h2 th:text="'Pegawai dengan nomor ' + ${noPegawai} + ' berhasil diubah'"></h2>
+                <div th:if = "${pegawai != null}">
+                    <h2 th:text="'Pegawai dengan nomor ' + ${pegawai.noPegawai} + 'dari cabang '+${pegawai.cabang.noCabang}+' berhasil diubah'"></h2>
+                </div>
+                <div th:unless = "${pegawai != null}">
+                    <h2 th:text="'Pegawai tidak berhasil diubah'"></h2>
+                </div>
                 <a class="btn btn-primary" href="/">Kembali ke Home</a>
             </div>
         </div>

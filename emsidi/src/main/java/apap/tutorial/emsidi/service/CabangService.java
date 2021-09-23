@@ -9,5 +9,5 @@ public interface CabangService {
     List<CabangModel> getCabangList();
     CabangModel getCabangByNoCabang(Long noCabang);
     List<CabangModel> getCabangListOrdered();
-    boolean deleteCabang(CabangModel cabang);
+    CabangModel deleteCabang(CabangModel cabang);
 }

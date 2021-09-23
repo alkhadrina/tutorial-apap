@@ -12,6 +12,7 @@
                 <br>
                 <form th:action="@{/pegawai/update}" th:object="${pegawai}" method="POST">
                     <input type="hidden" th:field="*{noPegawai}" />
+                    <input type="hidden" th:field="*{cabang}" />
 
                     Nama Pegawai : <br>
                     <input required class="form-control" type="text" name="namaPegawai" th:value="*{namaPegawai}"/>
@@ -25,7 +26,7 @@
                     <br><br>
 
                     <button class="btn btn-primary" type="submit">Submit</button>
-                    <a class="btn btn-primary" href="@{/cabang/view(noCabang=${noCabang})}">Cancel</a>
+                    <a class="btn btn-primary" href="@{/cabang/view(noCabang=${cabang.noCabang})}">Cancel</a>
                 </form>
             </div>
         </div>

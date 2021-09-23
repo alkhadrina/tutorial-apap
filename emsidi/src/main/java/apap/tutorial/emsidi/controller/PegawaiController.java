@@ -65,8 +65,8 @@ public class PegawaiController {
         @ModelAttribute PegawaiModel pegawai,
         Model model
     ){
-        pegawaiService.updatePegawai(pegawai);
-        model.addAttribute("noPegawai", pegawai.getNoPegawai());
+        pegawai = pegawaiService.updatePegawai(pegawai);
+        model.addAttribute("pegawai", pegawai);
         return "update-pegawai";
     }
 
@@ -76,11 +76,12 @@ public class PegawaiController {
         Model model
     ){
         PegawaiModel pegawai = pegawaiService.getPegawaiByNoPegawai(noPegawai);
-        CabangModel cabang = pegawai.getCabang();
-        
-        model.addAttribute("noCabang", pegawai.getCabang().getNoCabang());
-        pegawaiService.deletePegawai(pegawai);
-        model.addAttribute("noPegawai", noPegawai);
+        pegawai = pegawaiService.deletePegawai(pegawai);
+        if(pegawai!=null){
+            model.addAttribute("pegawai", pegawai);
+            return "delete-pegawai";
+        }
+        model.addAttribute("pegawai", null);
         
         return "delete-pegawai";
     }
