@@ -44,9 +44,14 @@ public class PegawaiController {
         @ModelAttribute PegawaiModel pegawai,
         Model model
     ){
-        pegawaiService.addPegawai(pegawai);
-        model.addAttribute("noCabang", pegawai.getCabang().getNoCabang());
-        model.addAttribute("namaPegawai", pegawai.getNamaPegawai());
+        pegawai = pegawaiService.addPegawai(pegawai);
+        if(pegawai != null){
+            model.addAttribute("noCabang", pegawai.getCabang().getNoCabang());
+            model.addAttribute("namaPegawai", pegawai.getNamaPegawai());
+            return "add-pegawai";
+        }
+        model.addAttribute("noCabang", null);
+        model.addAttribute("namaPegawai", null);
         return "add-pegawai";
     }
 
