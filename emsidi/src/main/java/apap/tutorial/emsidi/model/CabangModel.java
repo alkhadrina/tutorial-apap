@@ -1,0 +1,71 @@
+package apap.tutorial.emsidi.model;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.io.Serializable;
+import java.time.LocalTime;
+import java.util.List;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter 
+@Setter
+@Entity
+@Table(name = "cabang")
+public class CabangModel implements Serializable{
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long noCabang;
+
+    @NotNull
+    @Size(max = 30)
+    @Column(name = "nama_cabang", nullable = false)
+    private String namaCabang;
+
+    @NotNull
+    @Size(max = 30)
+    @Column(name = "alamat_cabang", nullable = false)
+    private String alamatCabang;
+
+    @NotNull
+    @Size(max = 30)
+    @Column(name = "no_telepon_cabang", nullable = false)
+    private String noTeleponCabang;
+
+    @NotNull
+    @Column(nullable = false)
+    @DateTimeFormat(pattern = "HH:mm")
+    private LocalTime waktuBuka;
+
+    @NotNull
+    @Column(nullable = false)
+    @DateTimeFormat(pattern = "HH:mm")
+    private LocalTime waktuTutup;
+
+    @OneToMany(mappedBy = "cabang", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<PegawaiModel> listPegawai;
+
+    @ManyToMany
+    @JoinTable(
+        name = "cabang_menu",
+        joinColumns = @JoinColumn(name = "no_cabang"),
+        inverseJoinColumns = @JoinColumn(name = "no_menu")
+    )
+    List<MenuModel> listMenu;
+
+    public Long getNoCabang(){
+        return noCabang;
+    }
+
+    public List<PegawaiModel> getListPegawai(){
+        return listPegawai;
+    }
+}

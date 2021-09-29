@@ -3,6 +3,39 @@
 * **Alkhadrina Rasyidah Azzah Zahra** - *1906399764* - *A*
 
 ---
+## Tutorial 3
+### What I have learned today
+
+1. Tolong jelaskan secara singkat apa kegunaan dari anotasi-anotasi yang ada pada model
+(@AllArgsConstructor, @NoArgsConstructor, @Setter, @Getter, @Entity, @Table)
+@AllArgsConstructor = secara otomatis membuat constructor dengan parameter setiap atribut dalam kelas tersebut
+@NoArgsConstructor = secara otomatis membuat constructor tanpa parameter
+@Setter = secara otomatis membuat method setter default 
+@Getter = secara otomatis membuat method getter default 
+@Entity = mendefinisikan bahwa class tersebut dapat dipetakan kedalam sebuah table 
+@Table = memungkinkan untuk menentukan detail tabel yang akan digunakan untuk entity dalam database
+
+2. Pada class CabangDB, terdapat method findByNoCabang, apakah kegunaan dari method
+tersebut?
+mendapatkan object cabang berdasarkan nocabang
+
+3. Jelaskan perbedaan kegunaan dari anotasi @JoinTable dan @JoinColumn
+@JoinTable = untuk memetakan relasi table kelas tersebut dengan tabel lain.
+@JoinColumn = untuk memetakan entity dengan primary key
+
+4. Pada class PegawaiModel, digunakan anotasi @JoinColumn pada atribut cabang, apa
+kegunaan dari name, referencedColumnName, dan nullable dalam anotasi tersebut? dan apa
+perbedaan nullable dan penggunaan anotasi @NotNull
+name = untuk primary key yang nantinya dipetakan ke entity.
+referencedColumnName = nama column dalam table yang akan direference dengan kolom yang dianotasi
+nullable = menentukan apakah entity boleh null atau tidak
+
+5. Jelaskan kegunaan FetchType.LAZY, CascadeType.ALL, dan FetchType.EAGER
+FetchType.LAZY = memberitahu Hibernate untuk hanya mengambil entity terkait dari database saat menggunakan relasi
+CascadeType.ALL = akan menjalankan semua aksi
+FetchType.EAGER = mengambil semua entity yang terkait
+
+---
 ## Tutorial 2
 ### What I have learned today
 
