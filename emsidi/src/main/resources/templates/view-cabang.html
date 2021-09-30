@@ -66,7 +66,7 @@
                         <h2 th:text="'Tidak ada pegawai'"></h2>
                     </div>
                     <br>
-                <a class="btn btn-primary" th:href="@{/pegawai/add/} + ${cabang.noCabang}">Tambah Pegawai</a>
+                
                     <div th:if="*{listMenu.size() != 0}">
                         <br>
                         <h2>Daftar Menu</h2>
@@ -104,7 +104,11 @@
             </div>
         </div>
     </div>
+    <div class="container">
+        <a class="btn btn-primary" th:href="@{/pegawai/add/} + ${cabang.noCabang}">Tambah Pegawai</a>
     <a class="btn btn-primary" href="/cabang/viewall">Kembali</a>
+    </div>
+    
 </div>
 
 </body>
