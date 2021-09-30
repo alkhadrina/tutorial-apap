@@ -3,6 +3,21 @@
 * **Alkhadrina Rasyidah Azzah Zahra** - *1906399764* - *A*
 
 ---
+## Tutorial 4
+### What I have learned today
+
+1. Jelaskan perbedaan th:include dan th:replace!
+th:include = menyisipkan isi dari tag yang didefinisikan ke dalam tag saat ini
+th:replace = mengganti tag saat ini dengan tag yang didefinisikan
+
+2. Jelaskan apa fungsi dari th:object!
+untuk menspesifikasi object mana yang akan disubmit ke form
+3. Jelaskan perbedaan dari * dan $ pada saat penggunaan th:object! Kapan harus dipakai?
+${...} - Variable Expressions. expression standar
+*{...} - Selection Variable Expressions. sama dengan Variable Expressions tetapi digunakan saat dikombinasikan dengan th:object
+
+
+---
 ## Tutorial 3
 ### What I have learned today
 
