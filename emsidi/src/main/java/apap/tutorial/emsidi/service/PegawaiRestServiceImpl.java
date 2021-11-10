@@ -22,7 +22,7 @@ import java.util.Optional;
 @Service
 @Transactional
 public class PegawaiRestServiceImpl implements PegawaiRestService {
-    // private final WebClient webClient;
+    private final WebClient webClient;
 
     @Autowired
     private PegawaiDb pegawaiDb;
@@ -30,9 +30,9 @@ public class PegawaiRestServiceImpl implements PegawaiRestService {
     @Autowired
     private CabangDb cabangDb;
 
-    // public PegawaiRestServiceImpl(WebClient.Builder webClientBuilder) {
-    // this.webClient = webClientBuilder.baseUrl(Setting.pegawaiUrl).build();
-    // }
+    public PegawaiRestServiceImpl(WebClient.Builder webClientBuilder) {
+        this.webClient = webClientBuilder.baseUrl("https://api.agify.io?name=").build();
+    }
 
     // @Override
     // public Mono<String> getStatus(Long noPegawai) {
@@ -93,6 +93,11 @@ public class PegawaiRestServiceImpl implements PegawaiRestService {
         PegawaiModel pegawai = getPegawaiByNoPegawai(noPegawai);
 
         if ((now.isBefore(pegawai.getCabang().getWaktuBuka()) || now.isAfter(pegawai.getCabang().getWaktuTutup()))) {
+
+            String nama = pegawai.getNamaPegawai();
+            String[] arr = nama.split(" ");
+            // this.webClient.get().uri(arr[0]).retrieve()
+
             return pegawai;
         } else {
             throw new UnsupportedOperationException();
