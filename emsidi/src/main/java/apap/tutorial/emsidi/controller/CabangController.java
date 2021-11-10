@@ -1,8 +1,11 @@
 package apap.tutorial.emsidi.controller;
 
 import apap.tutorial.emsidi.model.CabangModel;
+import apap.tutorial.emsidi.model.MenuModel;
 import apap.tutorial.emsidi.model.PegawaiModel;
 import apap.tutorial.emsidi.service.CabangService;
+import apap.tutorial.emsidi.service.MenuService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -18,9 +21,20 @@ public class CabangController {
     @Autowired
     private CabangService cabangService;
 
+    @Qualifier("menuServiceImpl")
+    @Autowired
+    MenuService menuService;
+
     @GetMapping("/cabang/add")
-    public String addCabangForm(Model model){
+    public String addCabangForm(
+        @RequestParam(value = "jmlMenu",required = false, defaultValue = "1")int jmlMenu,
+        Model model){
         model.addAttribute("cabang", new CabangModel());
+        if(jmlMenu < 1){
+            jmlMenu = 1;
+        }
+        model.addAttribute("jmlMenu", jmlMenu);
+        model.addAttribute("listMenu", menuService.getListMenu());
         return "form-add-cabang";
     }
 
@@ -32,6 +46,31 @@ public class CabangController {
         cabangService.addCabang(cabang);
         model.addAttribute("noCabang", cabang.getNoCabang());
         return "add-cabang";
+    }
+
+    @PostMapping(value = "/cabang/add", params = {"add"})
+    public String addRow(
+        @ModelAttribute CabangModel cabang,
+        Model model
+    ){
+        int jmlMenu = cabang.getListMenu().size() + 1;
+        String re = "redirect:/cabang/add?";
+        re += "jmlMenu=" +jmlMenu;
+        return re; 
+    }
+
+    @PostMapping(value = "/cabang/add", params = {"delete"})
+    public String deleteRow(
+        @ModelAttribute CabangModel cabang,
+        Model model
+    ){
+        int jmlMenu = cabang.getListMenu().size() - 1;
+        if(jmlMenu < 0){
+            jmlMenu = 0;
+        }
+        String re = "redirect:/cabang/add?";
+        re += "jmlMenu=" +jmlMenu;
+        return re; 
     }
 
     @GetMapping("/cabang/viewall")
@@ -48,9 +87,10 @@ public class CabangController {
     ){
         CabangModel cabang = cabangService.getCabangByNoCabang(noCabang);
         List<PegawaiModel> listPegawai = cabang.getListPegawai();
-
+        List<MenuModel> listMenu = cabang.getListMenu();
         model.addAttribute("cabang", cabang);
         model.addAttribute("listPegawai", listPegawai);
+        model.addAttribute("listMenu", listMenu);
 
         return "view-cabang";
     }
@@ -83,7 +123,7 @@ public class CabangController {
     }
 
     @GetMapping("/cabang/delete/{noCabang}")
-    public String deletePegawai(
+    public String deleteCabang(
         @PathVariable Long noCabang, 
         Model model
     ){
