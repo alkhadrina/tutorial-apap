@@ -2,6 +2,7 @@ package apap.tutorial.emsidi.service;
 
 import apap.tutorial.emsidi.model.PegawaiModel;
 import apap.tutorial.emsidi.repository.PegawaiDb;
+import apap.tutorial.emsidi.repository.CabangDb;
 import apap.tutorial.emsidi.rest.Setting;
 import reactor.core.publisher.Mono;
 
@@ -25,6 +26,9 @@ public class PegawaiRestServiceImpl implements PegawaiRestService {
 
     @Autowired
     private PegawaiDb pegawaiDb;
+
+    @Autowired
+    private CabangDb cabangDb;
 
     // public PegawaiRestServiceImpl(WebClient.Builder webClientBuilder) {
     // this.webClient = webClientBuilder.baseUrl(Setting.pegawaiUrl).build();
@@ -64,7 +68,7 @@ public class PegawaiRestServiceImpl implements PegawaiRestService {
 
         pegawai.setNamaPegawai(pegawaiUpdate.getNamaPegawai());
         pegawai.setJenisKelamin(pegawaiUpdate.getJenisKelamin());
-        pegawai.setCabang(pegawaiUpdate.getCabang());
+        pegawai.setCabang(cabangDb.getById(pegawaiUpdate.getCabang().getNoCabang()));
 
         return pegawaiDb.save(pegawai);
     }
@@ -77,6 +81,19 @@ public class PegawaiRestServiceImpl implements PegawaiRestService {
 
         if ((now.isBefore(pegawai.getCabang().getWaktuBuka()) || now.isAfter(pegawai.getCabang().getWaktuTutup()))) {
             pegawaiDb.delete(pegawai);
+        } else {
+            throw new UnsupportedOperationException();
+        }
+    }
+
+    @Override
+    public PegawaiModel getUmurPegawaiByNoPegawai(Long noPegawai) {
+        LocalTime now = LocalTime.now();
+
+        PegawaiModel pegawai = getPegawaiByNoPegawai(noPegawai);
+
+        if ((now.isBefore(pegawai.getCabang().getWaktuBuka()) || now.isAfter(pegawai.getCabang().getWaktuTutup()))) {
+            return pegawai;
         } else {
             throw new UnsupportedOperationException();
         }

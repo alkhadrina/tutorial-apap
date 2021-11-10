@@ -54,7 +54,7 @@ public class PegawaiRestController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,
                     "Pegawai with ID " + String.valueOf(noPegawai) + " Not Found!");
         } catch (UnsupportedOperationException e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Pegawai is still open or has pegawai");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Cabang is still open or has pegawai");
         }
     }
 
@@ -72,6 +72,19 @@ public class PegawaiRestController {
     @GetMapping(value = "/list-pegawai")
     private List<PegawaiModel> retrieveListPegawai() {
         return pegawaiRestService.retrieveListPegawai();
+    }
+
+    @GetMapping(value = "/pegawai/umur/{noPegawai}")
+    private PegawaiModel getUmurPegawai(@PathVariable("noPegawai") Long noPegawai) {
+        try {
+            return pegawaiRestService.getPegawaiByNoPegawai(noPegawai);
+
+        } catch (NoSuchElementException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,
+                    "Pegawai with ID " + String.valueOf(noPegawai) + " Not Found!");
+        } catch (UnsupportedOperationException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Cabang is still open or has pegawai");
+        }
     }
 
     // @GetMapping(value = "/pegawai/{noPegawai}/status")

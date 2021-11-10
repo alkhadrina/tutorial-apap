@@ -36,6 +36,9 @@ public class PegawaiModel implements Serializable {
     @Column(name = "jenis_kelamin", nullable = false)
     private int jenisKelamin;
 
+    @Column(name = "umur")
+    private int umur;
+
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "noCabang", referencedColumnName = "noCabang", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
