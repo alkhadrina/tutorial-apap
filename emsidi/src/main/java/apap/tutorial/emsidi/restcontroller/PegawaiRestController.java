@@ -74,6 +74,11 @@ public class PegawaiRestController {
         return pegawaiRestService.retrieveListPegawai();
     }
 
+    @GetMapping(value = "/list-pegawai/{jenisKelamin}")
+    private List<PegawaiModel> retrieveListPegawaiByGender(@PathVariable("jenisKelamin") int jenisKelamin) {
+        return pegawaiRestService.retrieveListPegawai();
+    }
+
     @GetMapping(value = "/pegawai/umur/{noPegawai}")
     private PegawaiModel getUmurPegawai(@PathVariable("noPegawai") Long noPegawai) {
         try {
