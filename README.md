@@ -1,6 +1,25 @@
 # Tutorial APAP
 ## Authors
 * **Alkhadrina Rasyidah Azzah Zahra** - *1906399764* - *A*
+---
+## Tutorial 5
+### What I have learned today
+
+1. Apa itu Postman? Apa kegunaannya?
+sebuah aplikasi yang berfungsi sebagai REST CLIENT untuk uji coba REST API
+2. Jelaskan fungsi dari anotasi @JsonIgnoreProperties dan @JsonProperty.
+@JsonIgnoreProperties = mengabaikan property yang ditentukan dalam serialization dan deserialization JSON
+@JsonProperty = digunakan untuk memetakan nama properti dengan keys JSON selama erialization dan deserialization
+3. Apa kegunaan atribut WebClient?
+baseUrl = Konfigurasikan URL dasar untuk permintaan.
+build = Buat instance WebClient.
+get = Mulai buat permintaan HTTP GET.
+uri = menentukan URI untuk permintaan menggunakan template URI dan variabel URI. Jika UriBuilderFactory dikonfigurasi untuk klien (misalnya dengan URI dasar), itu akan digunakan untuk memperluas template URI.
+retrieve = mendeklarasikan cara mengekstrak respons.
+post = Mulai membuat permintaan HTTP POST. 
+4. Apa itu ResponseEntity dan BindingResult? Apa kegunaannya?
+ResponseEntity = Extension dari HttpEntity yang menambah HttpStatus status code.
+BindingResult = General interface that represents binding results. Extends the interface for error registration capabilities, allowing for a Validator to be applied, and adds binding-specific analysis and model building.
 
 ---
 ## Tutorial 4

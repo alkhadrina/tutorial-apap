@@ -10,14 +10,19 @@ import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.io.Serializable;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter @Setter
+@Getter
+@Setter
 @Entity
 @Table(name = "pegawai")
-public class PegawaiModel implements Serializable{
+@JsonIgnoreProperties(value = { "cabang" }, allowSetters = true)
+public class PegawaiModel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long noPegawai;
@@ -31,12 +36,15 @@ public class PegawaiModel implements Serializable{
     @Column(name = "jenis_kelamin", nullable = false)
     private int jenisKelamin;
 
+    @Column(name = "umur")
+    private int umur;
+
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "noCabang", referencedColumnName = "noCabang", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private CabangModel cabang;
 
-    public long getNoPegawai(){
+    public long getNoPegawai() {
         return noPegawai;
     }
 }
