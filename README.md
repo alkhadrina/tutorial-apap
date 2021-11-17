@@ -2,6 +2,31 @@
 ## Authors
 * **Alkhadrina Rasyidah Azzah Zahra** - *1906399764* - *A*
 ---
+## Tutorial 6
+### What I have learned today
+
+1. Jelaskan secara singkat perbedaan Otentikasi dan Otorisasi! Di bagian mana (dalam kode
+yang telah anda buat) konsep tersebut diimplementasi?
+
+Otentikasi adalah proses identifikasi pengguna.
+Proses Otentikasi ada pada configAuthentication di WebSecurityConfig.
+Otorisasi adalah proses menentukan apakah pengguna saat ini diperbolehkan untuk melakukan tugas tertentu atau tidak.
+Proses Otorisasi ada pada configure hasAuthority di WebSecurityConfig.
+
+2. Apa itu BCryptPasswordEncoder? Jelaskan secara singkat cara kerja dan tujuannya.
+implementasi dari PasswordEncoder yang mengunakan fungsi hashing BCrypt. Tunjuannya untuk men-ecrypt atau hashing password.
+
+3. Apakah penyimpanan password sebaiknya menggunakan encryption atau hashing? Mengapa
+demikian?
+Iya, untuk melindungi password yang disimpan pada database.
+
+4. Jelaskan secara singkat apa itu UUID beserta penggunaannya!
+UUID digunakan untuk mengidentifikasi informasi yang unik dalam sebuah system. UUID bergantung pada urutan digit yang berisi 128 bits.
+
+5. Apa kegunaan class UserDetailsServiceImpl.java? Mengapa harus ada class tersebut?
+untuk mengambil data user dari database. Karena untuk mengambil detail user harus diautentikasi terlebih dahulu.
+
+---
 ## Tutorial 5
 ### What I have learned today
 
