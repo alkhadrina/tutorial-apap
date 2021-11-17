@@ -32,7 +32,7 @@
                     Waktu Tutup : <br>
                     <input class="form-control" type="time" name="waktuTutup" />
                     <br><br>
-                    <table sec:authorize access="hasAuthority('Manajer')" class="table">
+                    <table sec:authorize="hasRole('Manajer')" class="table">
                         <thead>
                         <tr>
                             <th>Nama Menu</th>
