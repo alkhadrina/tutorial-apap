@@ -16,6 +16,5 @@ public interface PegawaiRestService {
 
     void deletePegawai(Long noPegawai);
 
-    PegawaiModel getUmurPegawaiByNoPegawai(Long noPegawai);
-    // Mono<String> getStatus(Long noPegawai);
+    PegawaiModel predictAge(Long noPegawai);
 }

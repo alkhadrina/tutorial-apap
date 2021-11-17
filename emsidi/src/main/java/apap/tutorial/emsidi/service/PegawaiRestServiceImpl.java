@@ -1,5 +1,6 @@
 package apap.tutorial.emsidi.service;
 
+import apap.tutorial.emsidi.model.CabangModel;
 import apap.tutorial.emsidi.model.PegawaiModel;
 import apap.tutorial.emsidi.repository.PegawaiDb;
 import apap.tutorial.emsidi.repository.CabangDb;
@@ -15,7 +16,9 @@ import org.springframework.web.reactive.function.client.WebClient;
 import javax.transaction.Transactional;
 
 import java.time.LocalTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -87,18 +90,32 @@ public class PegawaiRestServiceImpl implements PegawaiRestService {
     }
 
     @Override
-    public PegawaiModel getUmurPegawaiByNoPegawai(Long noPegawai) {
+    public PegawaiModel predictAge(Long noPegawai) {
         LocalTime now = LocalTime.now();
-
         PegawaiModel pegawai = getPegawaiByNoPegawai(noPegawai);
+        CabangModel cabang = pegawai.getCabang();
 
-        if ((now.isBefore(pegawai.getCabang().getWaktuBuka()) || now.isAfter(pegawai.getCabang().getWaktuTutup()))) {
+        if ((now.isBefore(cabang.getWaktuBuka()) || now.isAfter(cabang.getWaktuTutup()))) {
+            String namaPegawai = pegawai.getNamaPegawai();
+            String response = this.webClient.get().uri("/?name=" + namaPegawai).retrieve().bodyToMono(String.class)
+                    .block();
 
-            String nama = pegawai.getNamaPegawai();
-            String[] arr = nama.split(" ");
-            // this.webClient.get().uri(arr[0]).retrieve()
+            response = response.substring(1, response.length() - 1); // remove curly brackets
+            String[] keyValuePairs = response.split(","); // split the string to create key-value pairs
+            Map<String, String> map = new HashMap<>();
 
-            return pegawai;
+            // iterate over the pairs
+            for (String pair : keyValuePairs) {
+                // split the pairs to get key and value
+                String[] entry = pair.split(":");
+
+                // add them to the hashmap and trim whitespaces
+                map.put(entry[0].trim().replace("\"", ""), entry[1].trim().replace("\"", ""));
+            }
+
+            pegawai.setUmur(map.get("age"));
+            return pegawaiDb.save(pegawai);
+
         } else {
             throw new UnsupportedOperationException();
         }

@@ -37,7 +37,7 @@ public class PegawaiModel implements Serializable {
     private int jenisKelamin;
 
     @Column(name = "umur")
-    private int umur;
+    private String umur;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "noCabang", referencedColumnName = "noCabang", nullable = false)
