@@ -2,6 +2,33 @@
 ## Authors
 * **Alkhadrina Rasyidah Azzah Zahra** - *1906399764* - *A*
 ---
+## Tutorial 7
+### What I have learned today
+
+1. Jelaskan apa yang Anda lakukan di latihan dalam satu paragraf per-soal. Berikan screenshot sebagai ilustrasi dari apa yang Anda jelaskan.
+    Dalam latihan nomor satu saya menambah function handleDeleteItemFromCart yang berisi code yang berlawanan dengan handleAddItemToCart. 
+    
+    Pada latihan nomor 2 saya hanya menambah line yang akan mengubah balance saat ini pada function handleDeleteItemFromCart untuk ditambah balancenya dan handleAddItemToCart untuk dikurangi balancenya. 
+    
+    Pada latihan nomor 3 saya hanya menambah code if else pada handleAddItemToCart yang conditionnya jika balancenya cukup maka ditambah ke MyCart jika tidak cukup maka akan menampilkan alert. 
+
+2. Menurut pemahaman kamu selama pengerjaan tutorial ini, apa perbedaan antara state dan
+props?
+Props (prop in plural), merupakan singkatan dari property.
+State merupakan data yang tersimpan dalam sebuah component. State bersifat private dan hanya relevan terhadap component itu sendiri. Berbeda dengan props yang valuenya dilempar dari component lain, state justru dapat menyimpan dan mengubah datanya sendiri dari dalam.
+
+3. Menurut kamu, apakah sebaiknya kita menggunakan component (e.g. List, Item) dalam
+React? sebutkan alasannya.
+Iya, karena akan mempermudah kita dalam me-manage UI. component dapat digunakan berulang-ulang sehingga dapat mempercepat kita dalam membangun UI.
+
+4. Apa perbedaan class component dan functional component?
+Functional component hanya bisa menggunakan props itu sebabnya function component disebut stateless component atau biasa digunakan juga sebagai UI Component (komponen yang menangani tampilan). Sedangkan Class component dapat menggunakan state dan props.
+
+5. Dalam react, apakah perbedaan component dan element?
+Elemen adalah blok bangunan terkecil di React, yang menggambarkan apa yang akan dilihat oleh user di layar mereka.
+Komponen pada React secara konsep sama seperti function pada JavaScript, perbedaannya adalah jika function menerima sebarang input yang disebut parameter atau argumen dan me-return sebuah nilai, komponen menerima input yang disebut props dan me-return React Element yang menggambarkan apa yang akan ditampilkan di layar. Komponen memungkinkan kita untuk membuat UI yang independent, isolated, dan reusable sehingga mengurangi repetisi kode.
+
+---
 ## Tutorial 6
 ### What I have learned today
 
