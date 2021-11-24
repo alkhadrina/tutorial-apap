@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <title>Emsidi</title>
     <object th:include="fragments/fragment :: css" th:remove="tag"></object>
@@ -32,7 +33,7 @@
                     Waktu Tutup : <br>
                     <input class="form-control" type="time" name="waktuTutup" />
                     <br><br>
-                    <table class="table">
+                    <table sec:authorize="hasRole('Manajer')" class="table">
                         <thead>
                         <tr>
                             <th>Nama Menu</th>
