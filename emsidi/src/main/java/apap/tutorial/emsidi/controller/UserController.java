@@ -45,7 +45,7 @@ public class UserController {
             return "redirect:/";
         }
         model.addAttribute("user", user);
-        return "redirect:/error";
+        return "error-add-user";
     }
 
     @GetMapping(value = "/viewall")

@@ -20,10 +20,16 @@ public class UserServiceImpl implements UserService {
         String regex = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$";
         Pattern p = Pattern.compile(regex);
         Matcher m = p.matcher(user.getPassword());
+
+        UserModel u = userDb.findByEmail(user.getEmail());
         if (m.matches()) {
-            String pass = encrypt(user.getPassword());
-            user.setPassword(pass);
-            return userDb.save(user);
+            if (u == null) {
+                String pass = encrypt(user.getPassword());
+                user.setPassword(pass);
+                return userDb.save(user);
+            }
+            System.out.println(u.getEmail());
+            return null;
         } else {
             return null;
         }
