@@ -18,8 +18,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers("/css/**").permitAll().antMatchers("/js/**").permitAll()
                 .antMatchers("/user/viewall").hasAuthority("Admin").antMatchers("/menu/add").hasAuthority("Manajer")
-                .antMatchers("/user/update-pass").hasAnyAuthority("User").anyRequest().authenticated().and().formLogin()
-                .loginPage("/login").permitAll().and().logout()
+                .antMatchers("/user/update-pass/**").hasAnyAuthority("User").anyRequest().authenticated().and()
+                .formLogin().loginPage("/login").permitAll().and().logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login").permitAll();
     }
 
