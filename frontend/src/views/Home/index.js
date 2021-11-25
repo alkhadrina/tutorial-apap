@@ -85,7 +85,7 @@ export default class Home extends React.Component{
 
                     <div className="container pt-3">
                         <div className="row mt-3">
-                        {this.state.cartHidden ? (
+                        {!this.state.cartHidden ? (
                                 <div className="col-sm">
                                     <List
                                         title="My Cart"
