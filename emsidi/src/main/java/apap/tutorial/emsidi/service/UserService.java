@@ -13,7 +13,9 @@ public interface UserService {
 
     UserModel deleteUser(UserModel user);
 
-    UserModel updateUserPassword(UserModel user, String oldPass, String newPass);
+    boolean validasiPassword(UserModel user, String password);
+
+    UserModel updatePassword(UserModel user, String password);
 
     UserModel getUserByUsername(String username);
 }
