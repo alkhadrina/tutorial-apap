@@ -42,17 +42,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserModel updateUserPassword(UserModel user, String oldPass, String newPass) {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        boolean m = passwordEncoder.matches(oldPass, user.getPassword());
-        if (m) {
-            user.setPassword(newPass);
-            return addUser(user);
-        }
-        return null;
-    }
-
-    @Override
     public UserModel getUserByUsername(String username) {
         return userDb.findByUsername(username);
     }
@@ -61,6 +50,17 @@ public class UserServiceImpl implements UserService {
     public UserModel deleteUser(UserModel user) {
         userDb.delete(user);
         return null;
+    }
+
+    @Override
+    public boolean validasiPassword(UserModel user, String password) {
+        return new BCryptPasswordEncoder().matches(password, user.getPassword());
+    }
+
+    @Override
+    public UserModel updatePassword(UserModel user, String password) {
+        user.setPassword(new BCryptPasswordEncoder().encode(password));
+        return userDb.save(user);
     }
 
 }
