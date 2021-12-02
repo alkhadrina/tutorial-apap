@@ -173,7 +173,7 @@ class ItemList extends Component {
         console.log(this.state.buyquantity);
         console.log(item.title);
         try {
-            const { data2 } = await APIConfig.get(`/cart/${item.id}`);
+            const { data2 } = await APIConfig.get("/cart");
             
             // this.setState({ items: data.result });
             console.log("data="+data2)
