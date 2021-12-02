@@ -5,6 +5,28 @@
 ## Tutorial 7
 ### What I have learned today
 
+1. Ceritakan langkah - langkah yang kalian lakukan untuk solve LATIHAN no.1, dan mengapa kalian melakukan langkah - langkah tersebut?
+ditambah setState dengan value default, setelah melakukan add state saat ini belum dikembalikan ke value default maka dari itu harus di setState
+2. Jelaskan fungsi dari async dan await!
+async menjalankan fungsi tanpa harus menunggu jadi pasti akan me-return sesuatu.
+await menunggu fungsi yang dipanggil selesai baru mereturn sesuatu.
+3. Masukkan jawaban dari Screenshot yang diperintahkan di halaman 9 pada Component Lifecycle
+pada pertanyaan ini.
+[SS hasil](https://docs.google.com/document/d/14Ti8_mwLPmqUvEpc3qX0O8MAY_qIRrnL/edit?usp=sharing&ouid=103490587925619836082&rtpof=true&sd=true)
+ 
+4. Jelaskan fungsi dari componentDidMount, shouldComponentUpdate,
+componentDidUpdate, componentWillReceiveProps, componentWillUnmount.
+Notes : Penjelasan harus mencantumkan “kapan fungsi dipanggil” dan “use case apa saja
+yang biasanya menggunakan lifecycle method tersebut”.
+componentDidMount= dipanggil saat sebuat component sudah selesai mounting. digunakan saat ada component yang harus di re-render. dilakukan saat mounting.
+shouldComponentUpdate= dipanggil setelah sebuah components props atau state berubah. method ini menentukan apakah sebuah component harus dire-render. dilakukan saat updating.
+componentDidUpdate= dipanggil setelah sebuah component re-render. semua pekerjaan manual yang dilakukan diluar React saat update harus dilakukan disini. dilakukan saat updating.
+componentWillReceiveProps= dipanggil setelah sebuah component telah menerima props yang valuenya sudah berubah. dilakukan saat updating.
+componentWillUnmount= dipanggil saat sebuah component dihapus dari DOM. melakukan clean-up. dilakukan saat unmounting.
+---
+## Tutorial 7
+### What I have learned today
+
 1. Jelaskan apa yang Anda lakukan di latihan dalam satu paragraf per-soal. Berikan screenshot sebagai ilustrasi dari apa yang Anda jelaskan.
     Dalam latihan nomor satu saya menambah function handleDeleteItemFromCart yang berisi code yang berlawanan dengan handleAddItemToCart. 
     
