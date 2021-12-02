@@ -25,6 +25,7 @@ const Item = (props) => {
                     placeholder="qty"
                     name="buyquantity"
                     value={value}
+                    onChange={onChange}
                     />
                     <Button action={handleAddCart}>
                         Add to Cart

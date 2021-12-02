@@ -35,6 +35,8 @@ class ItemList extends Component {
         this.handleEditItem = this.handleEditItem.bind(this);
         this.handleSubmitEditItem = this.handleSubmitEditItem.bind(this);
         this.handleSearchItem = this.handleSearchItem.bind(this);
+        this.handleAddCart = this.handleAddCart.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
     }
 
     componentDidMount() {
@@ -45,9 +47,11 @@ class ItemList extends Component {
     async loadData() {
         try {
         const { data } = await APIConfig.get("/item");
-        this.setState({ items: data.result });
+        //const { data2 } = APIConfig.get("/cart");
+        this.setState({ items: data.result});
+        console.log(data)
         } catch (error) {
-        alert("Oops terjadi masalah pada server");
+        alert("Oops terjadi masalah pada server"+ error);
         console.log(error);
         }
     }
@@ -131,6 +135,26 @@ class ItemList extends Component {
         this.handleCancel(event);
     }
 
+    async handleDelete(item,event){
+        console.log("delete id ="+item.id)
+        event.preventDefault();
+        try {
+        await APIConfig.delete(`/item/${item.id}`);
+        this.setState({
+            id: "",
+            title: "",
+            price: 0,
+            description: "",
+            category: "",
+            quantity: 0
+        })
+        this.loadData();
+        } catch (error) {
+            alert("Oops terjadi masalah pada server");
+            console.log(error);
+        }
+    }
+
     async handleSearchItem(event){
         let value = event.target.value;
         try {
@@ -144,8 +168,20 @@ class ItemList extends Component {
         console.log(value);
     }
 
-    handleAddCart(id,event){
-        console.log(event.target.value)
+    async handleAddCart(item,event){
+        event.preventDefault();
+        console.log(this.state.buyquantity);
+        console.log(item.title);
+        try {
+            const { data2 } = await APIConfig.get("/cart");
+            
+            // this.setState({ items: data.result });
+            console.log("data="+data2)
+            } catch (error) {
+            alert("Oops terjadi masalah pada server");
+            console.log(error);
+            } 
+        this.setState({buyquantity: 0})
     }
 
     render() {
@@ -184,6 +220,10 @@ class ItemList extends Component {
                         category={item.category}
                         quantity={item.quantity}
                         handleEdit={() => this.handleEditItem(item)}
+                        handleDelete={(event) => this.handleDelete(item,event)}
+                        value={this.state.buyquantity}
+                        onChange={this.handleChangeField}
+                        handleAddCart={(event) => this.handleAddCart(item,event)}
                     />
                 ))}
                 </div>
