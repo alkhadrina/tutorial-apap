@@ -5,6 +5,9 @@ import APIConfig from "../../api/APIConfig";
 import Button from "../../components/button";
 import Modal from "../../components/modal";
 import Search from "../../components/search";
+import { Fab, Badge } from '@material-ui/core';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import ViewStreamIcon from '@mui/icons-material/ViewStream';
 
 class ItemList extends Component {
     constructor(props) {
@@ -23,6 +26,7 @@ class ItemList extends Component {
             quantity: 0,
             cartItems: [],
             cartHidden: true,
+            buyquantity: 0
         };
         this.handleAddItem = this.handleAddItem.bind(this);
         this.handleCancel = this.handleCancel.bind(this);
@@ -30,6 +34,7 @@ class ItemList extends Component {
         this.handleSubmitItem = this.handleSubmitItem.bind(this);
         this.handleEditItem = this.handleEditItem.bind(this);
         this.handleSubmitEditItem = this.handleSubmitEditItem.bind(this);
+        this.handleSearchItem = this.handleSearchItem.bind(this);
     }
 
     componentDidMount() {
@@ -126,21 +131,22 @@ class ItemList extends Component {
         this.handleCancel(event);
     }
 
-    handleSearchItem(item){
-        this.setState({isSearch: true,id: item.id})
-    }
-
-    async handleSubmitSearchItem(){
+    async handleSearchItem(event){
+        let value = event.target.value;
         try {
-            const { data } = await APIConfig.get(`/item/${this.state.id}`);
+            const { data } = await APIConfig.get(`/item/?title=${value}`);
             
-            this.setState({ items: [data.result] });
+            this.setState({ items: data.result });
             } catch (error) {
             alert("Oops terjadi masalah pada server");
             console.log(error);
-            }
+            } 
+        console.log(value);
     }
 
+    handleAddCart(id,event){
+        console.log(event.target.value)
+    }
 
     render() {
         console.log("render()");
@@ -149,19 +155,17 @@ class ItemList extends Component {
                 <h1 className={classes.title}>
                     All Items
                 </h1>
-                <form>
-                <input
-                    className={classes.textField}
-                    type="number"
-                    placeholder="Search"
-                    name="id"
-                    value={this.state.id}
-                    onChange={this.handleChangeField}
-                />
-                    <Button action={this.handleSearchItem}>
-                        Search
-                    </Button>
-                </form>
+                <div style={{ position: "fixed", top: 25, right: 25}}>
+                        <Fab variant="extended" onClick={this.handleToggle}>
+                            {this.state.cartHidden ?
+                                <Badge color="secondary" badgeContent={this.state.cartItems.length}>
+                                    <ShoppingCartIcon />
+                                </Badge> 
+                                : <ViewStreamIcon/>}
+                        </Fab>
+                    </div>
+                <Search 
+                    onChange={(event) => this.handleSearchItem(event)}></Search>
                 
                 <Button action={this.handleAddItem}>
                     Add Item
